@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Autocorrect Tool</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>✍️ AI Autocorrect Tool</h1>
+
+        <p class="subtitle">
+            Correct spelling mistakes instantly with AI assistance
+        </p>
+
+        <form method="post">
+
+            <textarea
+                name="text"
+                placeholder="Type your text here..."
+                required></textarea>
+
+            <button type="submit">
+                ✨ Correct Text
+            </button>
+
+        </form>
+
+        {% if corrected_text %}
+
+        <div class="result">
+
+            <h2>📊 Text Statistics</h2>
+
+            <p><strong>Characters:</strong> {{ char_count }}</p>
+
+            <p><strong>Words:</strong> {{ word_count }}</p>
+
+        </div>
+
+        <div class="result">
+
+            <h2>📝 Original Text</h2>
+
+            <p>{{ original_text }}</p>
+
+        </div>
+
+        <div class="result">
+
+            <h2>✅ Corrected Text</h2>
+
+            <p id="correctedText">
+                {{ corrected_text }}
+            </p>
+
+            <button onclick="copyText()">
+                📋 Copy Text
+            </button>
+
+        </div>
+
+        {% endif %}
+
+        <footer>
+            Built with ❤️  using FastAPI & HappyTransformer
+        </footer>
+
+    </div>
+
+    <script>
+
+        function copyText() {
+
+            const text =
+                document.getElementById("correctedText").innerText;
+
+            navigator.clipboard.writeText(text);
+
+            alert("Copied Successfully!");
+
+        }
+
+    </script>
+
+</body>
+
+</html>
